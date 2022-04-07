@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Node {
@@ -13,6 +14,9 @@ public class Node {
 		super();
 		this.noOfBones = noOfBones;
 		this.isMaxPlayer = isMaxPlayer;
+		this.children=new ArrayList<Node>();
+		this.score=0;
+		
 		
 	}
     
