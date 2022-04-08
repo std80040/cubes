@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -5,13 +6,17 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CUBES {
-
-	public static void main(String[] args) {
-			
-	Scanner scanner= new Scanner(System.in);   
+  
+	static int maxMove=0;
 	
-	System.out.println("Number of cubes:");
+	public static void main(String[] args) {
+	
+	
+	Scanner scanner= new Scanner(System.in);   
+	System.out.println("Number of cubes:");	
+	
 	int cubesNo=scanner.nextInt();
+	
 	
 	System.out.println("Choose Ê cubes to reset:");
 	int kCubes=scanner.nextInt();
@@ -22,31 +27,29 @@ public class CUBES {
 	System.out.println();
 	
 		MinMax playerMax=new MinMax();
-	while (board.size()>0) {
+    
+		while (board.size()>0) {
 		
-	playerMax.constructTree(kCubes);	
+	playerMax.constructTree(board.size(),kCubes);	
 	Tree allPosibleMoves=playerMax.tree;
 	playerMax.checkWin(allPosibleMoves);
 	List<Node> nextMoves=new ArrayList<Node>();
 	nextMoves=allPosibleMoves.getRoot().getChildren();
 	
 	nextMoves.forEach(child -> {
-		
+	
 		if(child.getScore()==1) {
-			int maxMove=board.size()-child.getNoOfBones();
+			maxMove=board.size()-child.getNoOfBones();
 		}
 	});
-	if (maxMove==1) {
-		
-	};
+	if (maxMove==0) {
+		maxMove=board.size()-nextMoves.get(0).getNoOfBones();
+	}
 	
-	int pcCubes = getRandomElement(resCubes);
-	while(pcCubes>board.size()) {
-		pcCubes=getRandomElement(resCubes);
-	    }
 	
-	System.out.println("PC reset "+pcCubes+" Cubes");
-	playerMove(board,pcCubes);
+	
+	System.out.println("PC take "+maxMove+" Cubes from the table");
+	playerMove(board,maxMove);
 	if(board.size()==0) {
 	System.out.println("THE WINNER IS PC !!!");
 	break;
@@ -56,27 +59,34 @@ public class CUBES {
 	     System.out.println();
 	     }
 	
-	System.out.println("Reset (1 or 2 or "+ kCubes+") cubes :");
+	System.out.println("You can take (1 or 2 or "+ kCubes+") cubes from the table :");
 	int resCubesNo=scanner.nextInt();
 	
 	while ((resCubesNo !=1 && resCubesNo !=2 && resCubesNo !=kCubes)){ 
 		
 		if(resCubesNo !=1 && resCubesNo !=2 && resCubesNo !=kCubes) {
-		  System.out.println("You are not allowed to reset "+resCubesNo+" Cubes !");
+		  System.out.println("You are not allowed to take "+resCubesNo+" Cubes from the table !");
 		  printBoard(board);
 		  
 		}
 		if(resCubesNo > board.size()) {
 		 System.out.println();
-		 System.out.println("You try to reset more Cybes than the board !");
+		 System.out.println("You try to take more Cybes than the board !");
 		 printBoard(board);
 		}
 		System.out.println();
-		System.out.println("Reset (1 or 2 or "+ kCubes+") cubes :");
+		System.out.println("Take (1 or 2 or "+ kCubes+") cubes :");
 		resCubesNo=scanner.nextInt();
-	
-	
+		
 	}
+	while(resCubesNo > board.size()) {
+		 System.out.println();
+		 System.out.println("You try to take more Cybes than the board have !");
+		 printBoard(board);
+		 resCubesNo=scanner.nextInt();
+		}
+	
+	
 	playerMove(board,resCubesNo);
 	if(board.size()==0) {
 		System.out.println("THE WINNER IS THE PLAYER !!!");

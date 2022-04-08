@@ -7,22 +7,22 @@ public class MinMax {
 	
 	    Tree tree;
 
-	    public void constructTree(int noOfBones) {
+	    public void constructTree(int noOfBones, int kCubes) {
 	        tree = new Tree();
 	        Node root = new Node(noOfBones, true);
 	        tree.setRoot(root);
-	        constructTree(root);
+	        constructTree(root,kCubes);
 	    }
 
-	    private void constructTree(Node parentNode) {
+	    private void constructTree(Node parentNode,int kCubes) {
 	        List<Integer> listofPossibleHeaps 
-	          = GameOfBones.getPossibleStates(parentNode.getNoOfBones());
+	          = GameOfBones.getPossibleStates(parentNode.getNoOfBones(),kCubes);
 	        boolean isChildMaxPlayer = !parentNode.isMaxPlayer();
 	        listofPossibleHeaps.forEach(n -> {
 	            Node newNode = new Node(n, isChildMaxPlayer);
 	            parentNode.addChild(newNode);
 	            if (newNode.getNoOfBones() > 0) {
-	                constructTree(newNode);
+	                constructTree(newNode,kCubes);
 	            }
 	        });
 	    }
