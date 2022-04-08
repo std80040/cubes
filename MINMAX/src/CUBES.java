@@ -21,10 +21,25 @@ public class CUBES {
 	printBoard(board);
 	System.out.println();
 	
-		
+		MinMax playerMax=new MinMax();
 	while (board.size()>0) {
-	
 		
+	playerMax.constructTree(kCubes);	
+	Tree allPosibleMoves=playerMax.tree;
+	playerMax.checkWin(allPosibleMoves);
+	List<Node> nextMoves=new ArrayList<Node>();
+	nextMoves=allPosibleMoves.getRoot().getChildren();
+	
+	nextMoves.forEach(child -> {
+		
+		if(child.getScore()==1) {
+			int maxMove=board.size()-child.getNoOfBones();
+		}
+	});
+	if (maxMove==1) {
+		
+	};
+	
 	int pcCubes = getRandomElement(resCubes);
 	while(pcCubes>board.size()) {
 		pcCubes=getRandomElement(resCubes);
