@@ -16,7 +16,7 @@ public class MinMax {
 
 	    private void constructTree(Node parentNode,int kCubes) {
 	        List<Integer> listofPossibleHeaps 
-	          = GameOfBones.getPossibleStates(parentNode.getNoOfBones(),kCubes);
+	          = GameOfCubes.getPossibleStates(parentNode.getNoOfBones(),kCubes);
 	        boolean isChildMaxPlayer = !parentNode.isMaxPlayer();
 	        listofPossibleHeaps.forEach(n -> {
 	            Node newNode = new Node(n, isChildMaxPlayer);

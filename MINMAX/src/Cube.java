@@ -1,9 +1,9 @@
 
-public class CUBE {
+public class Cube {
 
 
 String cube;	
-public CUBE() {
+public Cube() {
 		this.cube = "[~] ";
 	}
 

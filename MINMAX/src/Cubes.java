@@ -3,13 +3,12 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-//GAME OF CUBES
-public class CUBES {
+
+public class Cubes {
   
 	static int maxMove=0;
 	
 	public static void main(String[] args) {
-	
 	
 	Scanner scanner= new Scanner(System.in);  
 	System.out.println("Set number of cubes on the table:");	
@@ -19,9 +18,9 @@ public class CUBES {
 	
 	System.out.println("Set number of cubes to take from the table except 1 or 2 :");
 	int kCubes=scanner.nextInt();
-	//int [] resCubes={1,2,kCubes};
 	
-	List<CUBE> board = createBoard(cubesNo);
+	
+	List<Cube> board = createBoard(cubesNo);
 	System.out.println();
 	
 	System.out.println("GAME START !!!");
@@ -32,9 +31,9 @@ public class CUBES {
 	System.out.println();
 	
 	
-		MinMax playerMax=new MinMax();
+	MinMax playerMax=new MinMax();
     
-		while (board.size()>0) {
+	while (board.size()>0) {
 		
 	playerMax.constructTree(board.size(),kCubes);	
 	Tree allPosibleMoves=playerMax.tree;
@@ -48,6 +47,7 @@ public class CUBES {
 			maxMove=board.size()-child.getNoOfBones();
 		}
 	});
+	
 	if (maxMove==0) {
 		maxMove=board.size()-nextMoves.get(0).getNoOfBones();
 	}
@@ -76,7 +76,7 @@ public class CUBES {
 	System.out.println("You can take (1 or 2 or "+ kCubes+") cubes from the table :");
 	int resCubesNo=scanner.nextInt();
 	
-	//¸ëåã÷ïò åéóáãùãÞò ìç áðïäåêôþí ôéìþí (1,2,Ê)
+	
 	while ((resCubesNo !=1 && resCubesNo !=2 && resCubesNo !=kCubes)){ 
 		
 		  System.out.println("You are not allowed to take "+resCubesNo+" Cubes from the table !");
@@ -87,7 +87,7 @@ public class CUBES {
 	      resCubesNo=scanner.nextInt();
 	}
 		
-		//Åëåã÷ïò åéóáãùãÞò ôéìÞò>áñéèìüò êýâùí óôï ôñáðÝæé
+		
 		while(resCubesNo > board.size()) {
 		 System.out.println();
 		 System.out.println("You try to take more Cybes than the board !");
@@ -118,16 +118,16 @@ public class CUBES {
 	}//main-----------------------------------------
 
 	
-	public static List<CUBE> createBoard(int cubesNumber) {
-		CUBE cube=new CUBE();
-		List<CUBE> board=new ArrayList<>();
+	public static List<Cube> createBoard(int cubesNumber) {
+		Cube cube=new Cube();
+		List<Cube> board=new ArrayList<>();
 		for(int i=0;i<cubesNumber;i++) {
 			board.add(i, cube);
 			}
 	return board;
 	}
 	
-	public static void printBoard(List<CUBE> board) {
+	public static void printBoard(List<Cube> board) {
 		for(int i=0;i<=board.size()-1;i++) {
 		System.out.print(board.get(i).getCube());
 		}
@@ -138,7 +138,7 @@ public class CUBES {
 	
 	}
 	
-	public static void playerMove(List<CUBE> board, int resetCubes) {
+	public static void playerMove(List<Cube> board, int resetCubes) {
 		for(int i=0;i<resetCubes;i++) {
 		board.remove(0);
 		}

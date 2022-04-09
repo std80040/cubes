@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class GameOfBones {
+class GameOfCubes {
     static List<Integer> getPossibleStates(int noOfBonesInHeap,int kCubes) {
         return IntStream.of(1,2,kCubes).boxed()
           .map(i -> noOfBonesInHeap - i)
