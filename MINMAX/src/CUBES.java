@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-
+//GAME OF CUBES
 public class CUBES {
   
 	static int maxMove=0;
@@ -76,7 +76,7 @@ public class CUBES {
 	System.out.println("You can take (1 or 2 or "+ kCubes+") cubes from the table :");
 	int resCubesNo=scanner.nextInt();
 	
-	//Έλεγχος εισαγωγής μη αποδεκτών τιμών (1,2,Κ)
+	//ΒΈΓ«Γ¥Γ£Γ·Γ―Γ² Γ¥Γ©Γ³Γ΅Γ£ΓΉΓ£ΓΓ² Γ¬Γ§ Γ΅Γ°Γ―Γ¤Γ¥ΓªΓ΄ΓΎΓ­ Γ΄Γ©Γ¬ΓΎΓ­ (1,2,Γ)
 	while ((resCubesNo !=1 && resCubesNo !=2 && resCubesNo !=kCubes)){ 
 		
 		  System.out.println("You are not allowed to take "+resCubesNo+" Cubes from the table !");
@@ -87,7 +87,7 @@ public class CUBES {
 	      resCubesNo=scanner.nextInt();
 	}
 		
-		//Ελεγχος εισαγωγής τιμής>αριθμός κύβων στο τραπέζι
+		//Γ…Γ«Γ¥Γ£Γ·Γ―Γ² Γ¥Γ©Γ³Γ΅Γ£ΓΉΓ£ΓΓ² Γ΄Γ©Γ¬ΓΓ²>Γ΅Γ±Γ©Γ¨Γ¬ΓΌΓ² ΓªΓ½ΓΆΓΉΓ­ Γ³Γ΄Γ― Γ΄Γ±Γ΅Γ°ΓΓ¦Γ©
 		while(resCubesNo > board.size()) {
 		 System.out.println();
 		 System.out.println("You try to take more Cybes than the board !");
