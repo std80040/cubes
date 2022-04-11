@@ -44,12 +44,12 @@ public class Cubes {
 	nextMoves.forEach(child -> {
 	
 		if(child.getScore()==1) {
-			maxMove=board.size()-child.getNoOfBones();
+			maxMove=board.size()-child.getNoOfCubes();
 		}
 	});
 	
 	if (maxMove==0) {
-		maxMove=board.size()-nextMoves.get(0).getNoOfBones();
+		maxMove=board.size()-nextMoves.get(0).getNoOfCubes();
 	}
 	
 	

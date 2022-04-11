@@ -3,16 +3,16 @@ import java.util.List;
 
 public class Node {
     
-	int noOfBones;
+	int noOfCubes;
     boolean isMaxPlayer;
     int score;
     List<Node> children;
     
   
     
-    public Node(int noOfBones, boolean isMaxPlayer) {
+    public Node(int noOfCubes, boolean isMaxPlayer) {
 		super();
-		this.noOfBones = noOfBones;
+		this.noOfCubes = noOfCubes;
 		this.isMaxPlayer = isMaxPlayer;
 		this.children=new ArrayList<Node>();
 		this.score=0;
@@ -24,11 +24,11 @@ public class Node {
 		
 	}
 
-	public int getNoOfBones() {
-		return noOfBones;
+	public int getNoOfCubes() {
+		return noOfCubes;
 	}
-	public void setNoOfBones(int noOfBones) {
-		this.noOfBones = noOfBones;
+	public void setNoOfCubes(int noOfCubes) {
+		this.noOfCubes = noOfCubes;
 	}
 	public boolean isMaxPlayer() {
 		return isMaxPlayer;

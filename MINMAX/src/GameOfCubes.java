@@ -3,10 +3,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class GameOfCubes {
-    static List<Integer> getPossibleStates(int noOfBonesInHeap,int kCubes) {
+    static List<Integer> getPossibleStates(int noOfCubesOnTable,int kCubes) {
         return IntStream.of(1,2,kCubes).boxed()
-          .map(i -> noOfBonesInHeap - i)
-          .filter(newHeapCount -> newHeapCount >= 0)
+          .map(i -> noOfCubesOnTable - i)
+          .filter(newTableCount -> newTableCount >= 0)
           .collect(Collectors.toList());
     }
 }

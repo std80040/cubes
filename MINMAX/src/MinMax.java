@@ -7,21 +7,21 @@ public class MinMax {
 	
 	    Tree tree;
 
-	    public void constructTree(int noOfBones, int kCubes) {
+	    public void constructTree(int noOfCubes, int kCubes) {
 	        tree = new Tree();
-	        Node root = new Node(noOfBones, true);
+	        Node root = new Node(noOfCubes, true);
 	        tree.setRoot(root);
 	        constructTree(root,kCubes);
 	    }
 
 	    private void constructTree(Node parentNode,int kCubes) {
 	        List<Integer> listofPossibleHeaps 
-	          = GameOfCubes.getPossibleStates(parentNode.getNoOfBones(),kCubes);
+	          = GameOfCubes.getPossibleStates(parentNode.getNoOfCubes(),kCubes);
 	        boolean isChildMaxPlayer = !parentNode.isMaxPlayer();
 	        listofPossibleHeaps.forEach(n -> {
 	            Node newNode = new Node(n, isChildMaxPlayer);
 	            parentNode.addChild(newNode);
-	            if (newNode.getNoOfBones() > 0) {
+	            if (newNode.getNoOfCubes() > 0) {
 	                constructTree(newNode,kCubes);
 	            }
 	        });
@@ -36,7 +36,7 @@ public class MinMax {
 	        List<Node> children = node.getChildren();
 	        boolean isMaxPlayer = node.isMaxPlayer();
 	        children.forEach(child -> {
-	            if (child.getNoOfBones() == 0) {
+	            if (child.getNoOfCubes() == 0) {
 	                child.setScore(isMaxPlayer ? 1 : -1);
 	            } else {
 	                checkWin(child);
